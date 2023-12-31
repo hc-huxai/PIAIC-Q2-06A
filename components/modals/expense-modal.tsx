@@ -14,12 +14,16 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { EventHandler } from "@/types/event-handler";
+
+interface ExpenseModalProps {
+  onChange: (e: EventHandler) => void;
+  onSubmit: () => void;
+}
 
 export const ExpenseModal = ({
-  onChange,
-}: {
-  onChange: (e: { target: { name: string; value: any } }) => void;
-}) => {
+  onChange, onSubmit
+}: ExpenseModalProps) => {
   const expenseModal = useExpenseModal();
 
   const [loading, setLoading] = useState(false);
@@ -52,6 +56,7 @@ export const ExpenseModal = ({
                   disabled={loading}
                   type="number"
                   onChange={(e) => onChange(e)}
+                  name="amount"
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -74,7 +79,6 @@ export const ExpenseModal = ({
                       mode="single"
                       selected={date}
                       onSelect={(day, selectedDay, active, e) => {
-                        // console.log(day, selectedDay, active, e);
                         setDate(day);
                         onChange({ target: { name: "createdAt", value: day } });
                       }}
@@ -92,7 +96,10 @@ export const ExpenseModal = ({
               >
                 Cancel
               </Button>
-              <Button disabled={loading} type="submit">
+              <Button disabled={loading} onClick={() => {
+                onSubmit()
+                setDate(undefined);
+              }}>
                 Continue
               </Button>
             </div>

@@ -14,7 +14,7 @@ import { ThemeToggle } from "./theme-toggle";
 
 export const Header = () => {
   return (
-    <header className="w-screen h-16 max-sm:h-12 p-4 px-8 flex items-center justify-between select-none border-b max-sm:px-4">
+    <header className="w-screen h-16 max-sm:h-12 p-4 px-8 flex items-center justify-between select-none border-b max-sm:px-8">
       <Link href="/">
         <Image
           src={logo}

@@ -35,7 +35,7 @@ export const Header = () => {
                   window.open("https://github.com/hc-huxai", "_blank")
                 }
               >
-                <Github className="fill-primary" />
+                <Github className="fill-primary stroke-primary" />
               </Button>
             </TooltipTrigger>
             <TooltipContent>

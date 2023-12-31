@@ -12,6 +12,7 @@ import { Banknote, Info, Plus, Trash } from "lucide-react";
 import { useEffect, useState } from "react";
 import { v4 as generateUUID } from "uuid";
 import { format } from "date-fns";
+import { RecentExpenses } from "@/components/recent-expenses";
 
 export default function Home() {
   const expenseModal = useExpenseModal();
@@ -71,7 +72,7 @@ export default function Home() {
   useEffect(() => {
     setIsMounted(true);
     generateChart(data);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   if (!isMounted) {
@@ -115,26 +116,7 @@ export default function Home() {
             data={chartData!}
             className="space-y-4 flex-[9_9_0%] border rounded-md py-2 px-2"
           />
-          <div className="flex-[3_3_0%] h-[350px] border rounded-md p-4">
-            <div className="">
-              <h1 className="text-xl font-bold">Recent Expenses</h1>
-              <span className="text-muted-foreground text-sm">
-                Recent 5 Expenses
-              </span>
-            </div>
-            <div className="grid grid-cols-1 gap-4 mt-2 p-2 rounded-md w-full hover:bg-primary-foreground transition-all cursor-pointer">
-              <div className="flex items-center justify-between">
-                <Banknote className="bg-primary stroke-primary-foreground p-2 rounded-full w-10 h-10" />
-                <div className="flex flex-col gap-0.5 ml-2 mr-auto">
-                  <span className="text-sm font-semibold">PKR 300</span>
-                  <span className="text-xs text-muted-foreground">
-                    31 December, 2023
-                  </span>
-                </div>
-                <Info className="w-6 h-6 cursor-pointer hover:stroke-primary/90" />
-              </div>
-            </div>
-          </div>
+          <RecentExpenses />
         </div>
         <Button
           onClick={() => {
@@ -146,7 +128,7 @@ export default function Home() {
         </Button>
         <Button
           className={cn(
-            "fixed bottom-6 right-6",
+            "fixed bottom-8 right-8",
             "rounded-3xl max-sm:rounded-2xl",
             "shadow-lg",
             "w-16 h-16 max-sm:w-12 max-sm:h-12"

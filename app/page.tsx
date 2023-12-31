@@ -31,23 +31,21 @@ export default function Home() {
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   let report: { month: string; amount: number }[] = [
-    { month: 'January', amount: 0 },
-    { month: 'February', amount: 0 },
-    { month: 'March', amount: 0 },
-    { month: 'April', amount: 0 },
-    { month: 'May', amount: 0 },
-    { month: 'June', amount: 0 },
-    { month: 'July', amount: 0 },
-    { month: 'August', amount: 0 },
-    { month: 'September', amount: 0 },
-    { month: 'October', amount: 0 },
-    { month: 'November', amount: 0 },
-    { month: 'December', amount: 0 },
+    { month: "January", amount: 0 },
+    { month: "February", amount: 0 },
+    { month: "March", amount: 0 },
+    { month: "April", amount: 0 },
+    { month: "May", amount: 0 },
+    { month: "June", amount: 0 },
+    { month: "July", amount: 0 },
+    { month: "August", amount: 0 },
+    { month: "September", amount: 0 },
+    { month: "October", amount: 0 },
+    { month: "November", amount: 0 },
+    { month: "December", amount: 0 },
   ];
 
   const generateChart = (data: ExpenseDatatype[]) => {
-    
-
     data.map((item) => {
       let month: string = new Date(item.createdAt!).toLocaleString("month", {
         month: "long",
@@ -57,8 +55,8 @@ export default function Home() {
 
       if (monthExist) {
         report.map((reportItem) => {
-          if(reportItem.month == month) {
-            reportItem.amount += Number(item.amount!)
+          if (reportItem.month == month) {
+            reportItem.amount += Number(item.amount!);
           }
         });
       } else {
@@ -73,6 +71,7 @@ export default function Home() {
   useEffect(() => {
     setIsMounted(true);
     generateChart(data);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   if (!isMounted) {
@@ -112,7 +111,10 @@ export default function Home() {
         <Heading title="Dashboard" description="An overview of your expenses" />
         <Separator />
         <div className="flex gap-8 items-center justify-between">
-          <Overview data={chartData!} className="space-y-4 flex-[9_9_0%] border rounded-md py-2 px-2" />
+          <Overview
+            data={chartData!}
+            className="space-y-4 flex-[9_9_0%] border rounded-md py-2 px-2"
+          />
           <div className="flex-[3_3_0%] h-[350px] border rounded-md p-4">
             <div className="">
               <h1 className="text-xl font-bold">Recent Expenses</h1>
@@ -120,14 +122,16 @@ export default function Home() {
                 Recent 5 Expenses
               </span>
             </div>
-            <div className="grid grid-cols-1 gap-4 mt-2 p-2 rounded-md w-full hover:bg-gray-800 transition-all">
+            <div className="grid grid-cols-1 gap-4 mt-2 p-2 rounded-md w-full hover:bg-primary-foreground transition-all cursor-pointer">
               <div className="flex items-center justify-between">
-                <Banknote className="bg-primary/30 stroke-primary p-2 rounded-full w-10 h-10" />
+                <Banknote className="bg-primary stroke-primary-foreground p-2 rounded-full w-10 h-10" />
                 <div className="flex flex-col gap-0.5 ml-2 mr-auto">
                   <span className="text-sm font-semibold">PKR 300</span>
-                  <span className="text-xs text-muted-foreground">31 December, 2023</span>
+                  <span className="text-xs text-muted-foreground">
+                    31 December, 2023
+                  </span>
                 </div>
-                <Info className="w-6 h-6" />
+                <Info className="w-6 h-6 cursor-pointer hover:stroke-primary/90" />
               </div>
             </div>
           </div>
